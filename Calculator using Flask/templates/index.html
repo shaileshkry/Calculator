@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="calculator">
+    <form method="post">
+        <input type="text" name="expression" value="{{ expression }}" class="display" readonly>
+        <input type="text" name="result" value="{{ result }}" class="display" readonly>
+        <div class="buttons">
+            <input type="button" value="%" onclick="addToExpression('%')">
+            <input type="button" value="CE" onclick="clearEntry()">
+            <input type="button" value="C" onclick="clearExpression()">
+            <input type="button" value="←" onclick="backspace()">
+            <input type="button" value="1/x" onclick="addToExpression('reciprocal')">  <!-- Modified -->
+            <input type="button" value="x^2" onclick="addToExpression('square')">  <!-- Modified -->
+            <input type="button" value="√" onclick="addToExpression('sqrt')">  <!-- Modified -->
+            <input type="button" value="/" onclick="addToExpression(' / ')">
+            <input type="button" value="7" onclick="addToExpression('7')">
+            <input type="button" value="8" onclick="addToExpression('8')">
+            <input type="button" value="9" onclick="addToExpression('9')">
+            <input type="button" value="*" onclick="addToExpression(' * ')">
+            <input type="button" value="4" onclick="addToExpression('4')">
+            <input type="button" value="5" onclick="addToExpression('5')">
+            <input type="button" value="6" onclick="addToExpression('6')">
+            <input type="button" value="-" onclick="addToExpression(' - ')">
+            <input type="button" value="1" onclick="addToExpression('1')">
+            <input type="button" value="2" onclick="addToExpression('2')">
+            <input type="button" value="3" onclick="addToExpression('3')">
+            <input type="button" value="+" onclick="addToExpression(' + ')">
+            <input type="button" value="±" onclick="addToExpression('(-')">
+            <input type="button" value="0" onclick="addToExpression('0')">
+            <input type="button" value="." onclick="addToExpression('.')">
+            <input type="submit" value="=" class="equal">
+        </div>
+    </form>
+</div>
+
+<script>
+    function addToExpression(value) {
+        document.getElementsByName('expression')[0].value += value;
+    }
+
+    function clearExpression() {
+        document.getElementsByName('expression')[0].value = '';
+        document.getElementsByName('result')[0].value = '';
+    }
+
+    function clearEntry() {
+        document.getElementsByName('expression')[0].value = '';
+    }
+
+    function backspace() {
+        let exp = document.getElementsByName('expression')[0].value;
+        document.getElementsByName('expression')[0].value = exp.slice(0, -1);
+    }
+</script>
+{% endblock %}
